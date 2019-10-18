@@ -42,7 +42,6 @@ You are now ready to access your data! Well, first you need a toolkit to use. We
 3. Copy and paste the following into the document. 
 
 ```{r, eval=F}
-# installing dependencies 
 install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl","devtools"))
 ```
 
@@ -50,11 +49,59 @@ install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr",
   + If prompted for a mirror (where the download will come from), click the top cloud or whatever is closest to your location
   + If prompted with a message about "Do you want to install from sources the package which needs compilation? (Yes/no/cancel)" type `Yes` and hit enter. 
   
-5. On a new line in your document, copy the following and then repeat step 4. 
+5. On a new line in your document, copy the following and then repeat step 4 
 
 ```{r, eval=F}
 devtools::install_github("teramonagi/fitbitr"); devtools::install_github("vcannataro/ECfitbitR")
 ```
+
+You are now ready to download your data! 
+
+Every time a chunk of code is presented below in a gray box, you can either copy it directly into the R terminal and press `return` or `Enter`, or you can develop your own `R script` using a New Document (step 2 above) and press `CMD+return` or `ctrl+enter` to send it to the terminal. If you copy multiple lines into the `R script` you can send the code to run in the terminal line-by-line, or you can highlight a chunk of code and then hit `CMD+return`. The advantage of having the`R script` is that you can save the script and return to it later—allowing you to see the exact steps you took to get to your end product (very important in the reproducibility of science and analyses)!  
+
+Every time you see the `#` sign in the code it is a "comment" and R automatically does not run comments. 
+
+As a general note, you need to run the following code chunks in order because much of the subsequent code depends on the code prior to it. 
+
+## Downloading your FitBit data
+
+### Initializing the API
+
+The first thing we will do is tell FitBit who you are. For this, we need the `FITBIT_KEY` and `FITBIT_SECRET` generated in the First things first step. 
+
+```{r, eval=F}
+# load the key and secret into your R environment. 
+FITBIT_KEY <- "your fitbit key pasted here in the quotes"
+FITBIT_SECRET <- "your fitbit secret pasted here in the quotes"
+```
+
+
+Next, we will authorize ourselves to obtain our own data. After running the next block of code your internet browser will prompt you to authorize your app. Highlight relevant fields and click `Allow`. It will look like this: 
+
+<div style="width:300px; height:300px">
+![auth_img](man/figures/authorize_screenshot.png)
+</div>
+
+```{r, eval=F}
+token <- fitbitr::oauth_token()
+```
+
+```{r, echo=F}
+load("../temp_token_for_build.RData")
+```
+
+
+
+### Downloading your data from fitbit
+
+Run the following code to download your data from fitbit: 
+
+```{r, message=F}
+my_data <- ECfitbitR::get_my_data(token=token)
+```
+
+
+
 
 
 

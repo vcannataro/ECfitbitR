@@ -64,11 +64,11 @@ collect_heartrate <- function(token, start_date=NULL, period_to_collect="1m", in
     hr_list <- vector(mode = "list", length = length(dates_to_calc))
     names(hr_list)  <- as.character(dates_to_calc)
 
-    for(date_ind in 1:length(dates_to_calc)){
+    for(this_date_ind in 1:length(dates_to_calc)){
 
       this_date <- dates_to_calc[this_date_ind]
       hr_list[[this_date_ind]] <- fitbitr::get_heart_rate_intraday_time_series(token, date=this_date, detail_level="1min")
-
+      message(paste0("Finished date: ", this_date, "... ", length(dates_to_calc)-this_date_ind, " dates left."))
 
     }
 
