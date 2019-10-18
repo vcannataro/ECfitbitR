@@ -78,9 +78,11 @@ FITBIT_SECRET <- "your fitbit secret pasted here in the quotes"
 
 Next, we will authorize ourselves to obtain our own data. After running the next block of code your internet browser will prompt you to authorize your app. Highlight relevant fields and click `Allow`. It will look like this: 
 
-<div style="width:300px; height:300px">
+
 ![auth_img](man/figures/authorize_screenshot.png)
-</div>
+
+
+
 
 ```{r, eval=F}
 token <- fitbitr::oauth_token()
@@ -96,11 +98,42 @@ load("../temp_token_for_build.RData")
 
 Run the following code to download your data from fitbit: 
 
-```{r, message=F}
+```{r, message=F, eval=F}
 my_data <- ECfitbitR::get_my_data(token=token)
 ```
 
 
+Test to see if it worked. We will look at the top-level data so it may not be very exciting (top starts midnight to 12:05am)... but if anything is there, it worked!
+
+```{r, eval=F}
+# heartrate summary 
+head(my_data$my_heartrate_data$heartrate_daily_summary)
+
+#heartrate by minute for yesterday (we can go down to second resolution if we want in the future)
+head(my_data$my_heartrate_data$heartrate_intraday_data[[length(my_data$my_heartrate_data$heartrate_intraday_data)]])
+
+# calorie data from yesterday 
+head(my_data$my_activity_data$calories_list[[length(my_data$my_activity_data$calories_list)]])
+
+# steps data from yesterday
+head(my_data$my_activity_data$steps_list[[length(my_data$my_activity_data$steps_list)]])
+
+# distance data from yesterday
+head(my_data$my_activity_data$distance_list[[length(my_data$my_activity_data$distance_list)]])
+
+# summary of sleep data
+head(my_data$my_sleep_data$sleep_data_output)
+
+```
+
+
+
+
+You can save all of your data to your computer in an R data file (.RData). Just change the directory in the quotes in the following code block and run the block. Make sure to keep the `my_fitbit_data.RData`, or pick your own name, so that your file has a name. I am saving directly to my Desktop: 
+
+```{r, eval=F}
+save(my_data, file = "~/Desktop/my_fitbit_data.RData")
+```
 
 
 

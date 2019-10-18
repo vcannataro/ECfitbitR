@@ -121,11 +121,7 @@ the next block of code your internet browser will prompt you to
 authorize your app. Highlight relevant fields and click `Allow`. It will
 look like this:
 
-<div style="width:300px; height:300px">
-
 ![auth\_img](man/figures/authorize_screenshot.png)
-
-</div>
 
 ``` r
 token <- fitbitr::oauth_token()
@@ -139,106 +135,36 @@ Run the following code to download your data from fitbit:
 my_data <- ECfitbitR::get_my_data(token=token)
 ```
 
-    ## Getting my data...
+Test to see if it worked. We will look at the top-level data so it may
+not be very exciting (top starts midnight to 12:05am)… but if anything
+is there, it worked\!
 
-    ## Collecting activity data...
+``` r
+# heartrate summary 
+head(my_data$my_heartrate_data$heartrate_daily_summary)
 
-    ## Collecting activity data...
+#heartrate by minute for yesterday (we can go down to second resolution if we want in the future)
+head(my_data$my_heartrate_data$heartrate_intraday_data[[length(my_data$my_heartrate_data$heartrate_intraday_data)]])
 
-    ## Finished date: 2019-09-17... 30 dates left.
+# calorie data from yesterday 
+head(my_data$my_activity_data$calories_list[[length(my_data$my_activity_data$calories_list)]])
 
-    ## Finished date: 2019-09-18... 29 dates left.
+# steps data from yesterday
+head(my_data$my_activity_data$steps_list[[length(my_data$my_activity_data$steps_list)]])
 
-    ## Finished date: 2019-09-19... 28 dates left.
+# distance data from yesterday
+head(my_data$my_activity_data$distance_list[[length(my_data$my_activity_data$distance_list)]])
 
-    ## Finished date: 2019-09-20... 27 dates left.
+# summary of sleep data
+head(my_data$my_sleep_data$sleep_data_output)
+```
 
-    ## Finished date: 2019-09-21... 26 dates left.
+You can save all of your data to your computer in an R data file
+(.RData). Just change the directory in the quotes in the following code
+block and run the block. Make sure to keep the `my_fitbit_data.RData`,
+or pick your own name, so that your file has a name. I am saving
+directly to my Desktop:
 
-    ## Finished date: 2019-09-22... 25 dates left.
-
-    ## Finished date: 2019-09-23... 24 dates left.
-
-    ## Finished date: 2019-09-24... 23 dates left.
-
-    ## Finished date: 2019-09-25... 22 dates left.
-
-    ## Finished date: 2019-09-26... 21 dates left.
-
-    ## Finished date: 2019-09-27... 20 dates left.
-
-    ## Finished date: 2019-09-28... 19 dates left.
-
-    ## Finished date: 2019-09-29... 18 dates left.
-
-    ## Finished date: 2019-09-30... 17 dates left.
-
-    ## Finished date: 2019-10-01... 16 dates left.
-
-    ## Finished date: 2019-10-02... 15 dates left.
-
-    ## Finished date: 2019-10-03... 14 dates left.
-
-    ## Finished date: 2019-10-04... 13 dates left.
-
-    ## Finished date: 2019-10-05... 12 dates left.
-
-    ## Finished date: 2019-10-06... 11 dates left.
-
-    ## Finished date: 2019-10-07... 10 dates left.
-
-    ## Finished date: 2019-10-08... 9 dates left.
-
-    ## Finished date: 2019-10-09... 8 dates left.
-
-    ## Finished date: 2019-10-10... 7 dates left.
-
-    ## Finished date: 2019-10-11... 6 dates left.
-
-    ## Finished date: 2019-10-12... 5 dates left.
-
-    ## Finished date: 2019-10-13... 4 dates left.
-
-    ## Finished date: 2019-10-14... 3 dates left.
-
-    ## Finished date: 2019-10-15... 2 dates left.
-
-    ## Finished date: 2019-10-16... 1 dates left.
-
-    ## Finished date: 2019-10-17... 0 dates left.
-
-    ## Collecting heart rate data...
-
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-    ## Finished date: 2019-10-17... 0 dates left.
-
-    ## Collecting sleep data...
+``` r
+save(my_data, file = "~/Desktop/my_fitbit_data.RData")
+```
