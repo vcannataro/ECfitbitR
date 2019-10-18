@@ -18,7 +18,55 @@ limited but specific functionality in mind.
 The first thing you need to do to access your own FitBit data is make a
 personal FitBit API web app.
 
-You need to go to <https://dev.fitbit.com/apps/new> and log into your
-FitBit account.
+1.  Go to <https://dev.fitbit.com/apps/new> and log into your FitBit
+    account.
+2.  Register your application. This is your own personal app for your
+    own personal data, so you do not need a terms of service to share
+    with clients. Hence, we just use the website of the R package
+    (<https://github.com/vcannataro/ECfitbitR>) for our terms.
+
+![](man/figures/screenshot_app_options.png)
+
+3.  Retrieve your Client ID (FITBIT\_KEY) and your Client Secret
+    (FITBIT\_SECRET). You can find these here:
+    <https://dev.fitbit.com/apps>.
+
+![](man/figures/web_app_settings.png)
+
+You are now ready to access your data\! Well, first you need a toolkit
+to use. We will use the free, open source, statistical computing
+platform [`R`](https://www.r-project.org/).
+
+### Downloading R
+
+1.  Go to <https://cloud.r-project.org/> and select your specific
+    download for your specific operating system.
+2.  Follow the instructions to download and install `R`.
 
 ## Installation
+
+`ECfitbitR` is a mostly self-contained package, but it does have some
+dependencies that need to be installed.
+
+1.  Open R
+2.  Click File –\> New Document (or whatever the equivalent is in your
+    operating system).
+3.  Copy and paste the following into the document.
+
+<!-- end list -->
+
+``` r
+# installing dependencies 
+install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl"))
+```
+
+4.  On the line of the code that you just copied, press `CMD+return` (or
+    `ctrl+enter` on PC, etc.)
+
+<!-- end list -->
+
+  - If prompted for a mirror (where the download will come from), click
+    the top cloud or whatever is closest to your location
+  - If prompted with a message about “Do you want to install from
+    sources the package which needs compilation? (Yes/no/cancel)” type
+    `Yes` and hit enter.
