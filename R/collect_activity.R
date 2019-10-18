@@ -1,4 +1,4 @@
-#' Collect fitbit activity
+#' Collect fitbit activity data
 #'
 #' Collects all of the "activity" data from the FitBit API.
 #'
@@ -28,16 +28,16 @@ collect_activity <- function(token, start_date=NULL,days_prior_to_start=30){
   # initiate data structures
 
   steps_list <- vector(mode = "list", length = length(dates_to_calc))
-  names(steps_list) <- dates_to_calc
+  names(steps_list) <- as.character(dates_to_calc)
 
   # active_minutes_list <- vector(mode = "list", length = length(dates_to_calc))
   # names(active_minutes_list) <- dates_to_calc
 
   distance_list <- vector(mode = "list", length = length(dates_to_calc))
-  names(distance_list) <- dates_to_calc
+  names(distance_list) <- as.character(dates_to_calc)
 
   calories_list <- vector(mode = "list", length = length(dates_to_calc))
-  names(calories_list) <- dates_to_calc
+  names(calories_list) <- as.character(dates_to_calc)
 
   # start collecting data
   message("Collecting activity data...")
