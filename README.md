@@ -168,3 +168,11 @@ directly to my Desktop:
 ``` r
 save(my_data, file = "~/Desktop/my_fitbit_data.RData")
 ```
+
+You can also save your data as a .csv to open in other programs, like
+Microsoft Excel.
+
+``` r
+# saving heartrate data summary
+write.csv(x = my_data$my_heartrate_data$heartrate_daily_summary,file = "~/Desktop/my_heartrate_data.csv", row.names = F)
+```
