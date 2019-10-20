@@ -166,7 +166,7 @@ or pick your own name, so that your file has a name. I am saving
 directly to my Desktop:
 
 ``` r
-save(my_data, file = "~/Desktop/my_fitbit_data.RData")
+save(my_data, file = "~/Desktop/my_fitbit_data.RData") 
 ```
 
 You can also save your data as a .csv to open in other programs, like
