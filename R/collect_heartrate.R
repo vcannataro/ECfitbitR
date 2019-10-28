@@ -29,7 +29,13 @@ collect_heartrate <- function(token, start_date=NULL, period_to_collect="1m", in
                                  resting_hr = heartrate_df$`activities-heart`$value$restingHeartRate,
                                  time_in_fat_burn = NA,
                                  time_in_cardio = NA,
-                                 time_in_peak = NA
+                                 time_in_peak = NA,
+                                 min_fatburn = NA,
+                                 max_fatburn = NA,
+                                 min_cardio = NA,
+                                 max_cardio = NA,
+                                 min_peak = NA,
+                                 max_peak = NA
   )
 
 
@@ -40,12 +46,38 @@ collect_heartrate <- function(token, start_date=NULL, period_to_collect="1m", in
       heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$minutes[
         which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Fat Burn")]
 
+    heartrate_df_out[this_date_ind,"min_fatburn"] <-
+      heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$min[
+        which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Fat Burn")]
+
+    heartrate_df_out[this_date_ind,"max_fatburn"] <-
+      heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$max[
+        which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Fat Burn")]
+
+
     heartrate_df_out[this_date_ind,"time_in_cardio"] <-
       heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$minutes[
         which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Cardio")]
 
+    heartrate_df_out[this_date_ind,"min_cardio"] <-
+      heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$min[
+        which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Cardio")]
+
+    heartrate_df_out[this_date_ind,"max_cardio"] <-
+      heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$max[
+        which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Cardio")]
+
     heartrate_df_out[this_date_ind,"time_in_peak"] <-
       heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$minutes[
+        which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Peak")]
+
+
+    heartrate_df_out[this_date_ind,"min_peak"] <-
+      heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$min[
+        which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Peak")]
+
+    heartrate_df_out[this_date_ind,"max_peak"] <-
+      heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$max[
         which(heartrate_df$`activities-heart`$value$heartRateZones[[this_date_ind]]$name=="Peak")]
   }
 

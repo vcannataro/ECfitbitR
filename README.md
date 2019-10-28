@@ -150,30 +150,6 @@ Run the following code to download your data from fitbit:
 my_data <- ECfitbitR::get_my_data(token=token)
 ```
 
-Test to see if it worked. We will look at the top-level data so it may
-not be very exciting (top starts midnight to 12:05am)… but if anything
-is there, it worked\!
-
-``` r
-# heartrate summary 
-head(my_data$my_heartrate_data$heartrate_daily_summary)
-
-#heartrate by minute for yesterday (we can go down to second resolution if we want in the future)
-head(my_data$my_heartrate_data$heartrate_intraday_data[[length(my_data$my_heartrate_data$heartrate_intraday_data)]])
-
-# calorie data from yesterday 
-head(my_data$my_activity_data$calories_list[[length(my_data$my_activity_data$calories_list)]])
-
-# steps data from yesterday
-head(my_data$my_activity_data$steps_list[[length(my_data$my_activity_data$steps_list)]])
-
-# distance data from yesterday
-head(my_data$my_activity_data$distance_list[[length(my_data$my_activity_data$distance_list)]])
-
-# summary of sleep data
-head(my_data$my_sleep_data$sleep_data_output)
-```
-
 You can save all of your data to your computer in an R data file
 (.RData). Just change the directory in the quotes in the following code
 block and run the block. Make sure to keep the `my_fitbit_data.RData`,
@@ -190,4 +166,14 @@ Microsoft Excel.
 ``` r
 # saving heartrate data summary
 write.csv(x = my_data$my_heartrate_data$heartrate_daily_summary,file.path("~","Desktop","my_heartrate_data.csv"), row.names = F)
+```
+
+### Clean and save your data for analyses
+
+Much of the data in `my_data` is in per-minute resolution. The
+`ECfitbitR::clean_my_data` function will split this data into 6 hour
+blocks for you for easy analyses.
+
+``` r
+my_cleaned_data <- ECfitbitR::clean_my_data(my_fitbit_data = my_data)
 ```
