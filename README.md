@@ -74,7 +74,7 @@ install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr",
 ```
 
 4.  On the line of the code that you just copied, press `CMD+return` (or
-    `ctrl+enter` on PC, etc.)
+    `ctrl+R` on PC, etc.)
 
 <!-- end list -->
 
@@ -103,7 +103,7 @@ You are now ready to download your data\!
 Every time a chunk of code is presented below in a gray box, you can
 either copy it directly into the R terminal and press `return` or
 `Enter`, or you can develop your own `R script` using a New Document
-(step 2 above) and press `CMD+return` or `ctrl+enter` to send it to the
+(step 2 above) and press `CMD+return` or `ctrl+R` to send it to the
 terminal. If you copy multiple lines into the `R script` you can send
 the code to run in the terminal line-by-line, or you can highlight a
 chunk of code and then hit `CMD+return`. The advantage of having the`R
@@ -181,7 +181,7 @@ or pick your own name, so that your file has a name. I am saving
 directly to my Desktop:
 
 ``` r
-save(my_data, file = "~/Desktop/my_fitbit_data.RData") 
+save(my_data, file = file.path("~","Desktop","my_fitbit_data.RData")) 
 ```
 
 You can also save your data as a .csv to open in other programs, like
@@ -189,5 +189,5 @@ Microsoft Excel.
 
 ``` r
 # saving heartrate data summary
-write.csv(x = my_data$my_heartrate_data$heartrate_daily_summary,file = "~/Desktop/my_heartrate_data.csv", row.names = F)
+write.csv(x = my_data$my_heartrate_data$heartrate_daily_summary,file.path("~","Desktop","my_heartrate_data.csv"), row.names = F)
 ```

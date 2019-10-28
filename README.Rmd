@@ -50,7 +50,7 @@ You are now ready to access your data! Well, first you need a toolkit to use. We
 install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl","devtools"))
 ```
 
-4. On the line of the code that you just copied, press `CMD+return` (or `ctrl+enter` on PC, etc.) 
+4. On the line of the code that you just copied, press `CMD+return` (or `ctrl+R` on PC, etc.) 
   + If prompted for a mirror (where the download will come from), click the top cloud or whatever is closest to your location
   + If prompted with a message about "Do you want to install from sources the package which needs compilation? (Yes/no/cancel)" type `Yes` and hit enter. 
   
@@ -62,7 +62,7 @@ devtools::install_github("teramonagi/fitbitr"); devtools::install_github("vcanna
 
 You are now ready to download your data! 
 
-Every time a chunk of code is presented below in a gray box, you can either copy it directly into the R terminal and press `return` or `Enter`, or you can develop your own `R script` using a New Document (step 2 above) and press `CMD+return` or `ctrl+enter` to send it to the terminal. If you copy multiple lines into the `R script` you can send the code to run in the terminal line-by-line, or you can highlight a chunk of code and then hit `CMD+return`. The advantage of having the`R script` is that you can save the script and return to it later—allowing you to see the exact steps you took to get to your end product (very important in the reproducibility of science and analyses)!  
+Every time a chunk of code is presented below in a gray box, you can either copy it directly into the R terminal and press `return` or `Enter`, or you can develop your own `R script` using a New Document (step 2 above) and press `CMD+return` or `ctrl+R` to send it to the terminal. If you copy multiple lines into the `R script` you can send the code to run in the terminal line-by-line, or you can highlight a chunk of code and then hit `CMD+return`. The advantage of having the`R script` is that you can save the script and return to it later—allowing you to see the exact steps you took to get to your end product (very important in the reproducibility of science and analyses)!  
 
 Every time you see the `#` sign in the code it is a "comment" and R automatically does not run comments. 
 
@@ -137,7 +137,7 @@ head(my_data$my_sleep_data$sleep_data_output)
 You can save all of your data to your computer in an R data file (.RData). Just change the directory in the quotes in the following code block and run the block. Make sure to keep the `my_fitbit_data.RData`, or pick your own name, so that your file has a name. I am saving directly to my Desktop: 
 
 ```{r, eval=F}
-save(my_data, file = "~/Desktop/my_fitbit_data.RData") 
+save(my_data, file = file.path("~","Desktop","my_fitbit_data.RData")) 
 ```
 
 
@@ -145,7 +145,7 @@ You can also save your data as a .csv to open in other programs, like Microsoft 
 
 ```{r, eval=F}
 # saving heartrate data summary
-write.csv(x = my_data$my_heartrate_data$heartrate_daily_summary,file = "~/Desktop/my_heartrate_data.csv", row.names = F)
+write.csv(x = my_data$my_heartrate_data$heartrate_daily_summary,file.path("~","Desktop","my_heartrate_data.csv"), row.names = F)
 ```
 
 
