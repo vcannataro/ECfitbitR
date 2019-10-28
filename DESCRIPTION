@@ -13,4 +13,7 @@ Imports:
   fitbitr,
   lubridate,
   httr,
-  jsonlite
+  jsonlite,
+  dplyr, 
+  magrittr, 
+  tidyr

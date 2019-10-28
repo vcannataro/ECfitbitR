@@ -70,7 +70,7 @@ servers).
 <!-- end list -->
 
 ``` r
-install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl","devtools"))
+install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl","devtools","magrittr"))
 ```
 
 4.  On the line of the code that you just copied, press `CMD+return` (or

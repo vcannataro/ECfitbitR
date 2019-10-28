@@ -47,7 +47,7 @@ You are now ready to access your data! Well, first you need a toolkit to use. We
 3. Copy and paste the following into the document. You may be prompted to select a "mirror" server to download the packages from---choose either the top one or whatever location is closest to you (this mattered more when download speed was highly dependent on distance to servers).   
 
 ```{r, eval=F}
-install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl","devtools"))
+install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl","devtools","magrittr"))
 ```
 
 4. On the line of the code that you just copied, press `CMD+return` (or `ctrl+R` on PC, etc.) 
