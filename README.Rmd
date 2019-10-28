@@ -18,7 +18,12 @@ You can use the `ECfitbitR` package to access your FitBit data through the FitBi
 The first thing you need to do to access your own FitBit data is make a personal FitBit API web app. 
 
 1. Go to [https://dev.fitbit.com/apps/new](https://dev.fitbit.com/apps/new) and log into your FitBit account. 
-2. Register your application. This is your own personal app for your own personal data, so you do not need a terms of service to share with clients. Hence, we just use the website of the R package (https://github.com/vcannataro/ECfitbitR) for our terms. 
+2. Register your application. This is your own personal app for your own personal data, so you do not need a terms of service to share with clients. Hence, we just use the website of the R package (https://github.com/vcannataro/ECfitbitR) for our terms. **IMPORTANT:** the fields must exactly match what is in this image. Feel free to copy+paste my inputs:
+ + `https://github.com/vcannataro/ECfitbitR` 
+ + `http://localhost:1410/` (for Callback URL)
+ 
+Also make sure to set your `OAuth 2.0 Application Type` as `Personal`.  
+
 
 ![](man/figures/screenshot_app_options.png)
 
@@ -39,7 +44,7 @@ You are now ready to access your data! Well, first you need a toolkit to use. We
 
 1. Open R 
 2. Click File --> New Document (or whatever the equivalent is in your operating system). 
-3. Copy and paste the following into the document. 
+3. Copy and paste the following into the document. You may be prompted to select a "mirror" server to download the packages from---choose either the top one or whatever location is closest to you (this mattered more when download speed was highly dependent on distance to servers).   
 
 ```{r, eval=F}
 install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl","devtools"))
@@ -49,7 +54,7 @@ install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr",
   + If prompted for a mirror (where the download will come from), click the top cloud or whatever is closest to your location
   + If prompted with a message about "Do you want to install from sources the package which needs compilation? (Yes/no/cancel)" type `Yes` and hit enter. 
   
-5. On a new line in your document, copy the following and then repeat step 4 
+5. On a new line in your document, copy the following and then repeat step 4. **NOTE:** If on PC, you may be asked to update a certain Rtools package, or to update existing packages. Just hit `Enter` to skip the update at the prompt. 
 
 ```{r, eval=F}
 devtools::install_github("teramonagi/fitbitr"); devtools::install_github("vcannataro/ECfitbitR")
@@ -79,14 +84,14 @@ FITBIT_SECRET <- "your fitbit secret pasted here in the quotes"
 Next, we will authorize ourselves to obtain our own data. After running the next block of code your internet browser will prompt you to authorize your app. Highlight relevant fields and click `Allow`. It will look like this: 
 
 
-![auth_img](man/figures/authorize_screenshot.png)
-
-
-
-
 ```{r, eval=F}
 token <- fitbitr::oauth_token()
 ```
+
+
+![auth_img](man/figures/authorize_screenshot.png)
+
+
 
 ```{r, echo=F}
 load("../temp_token_for_build.RData")

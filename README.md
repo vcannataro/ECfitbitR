@@ -24,6 +24,15 @@ personal FitBit API web app.
     own personal data, so you do not need a terms of service to share
     with clients. Hence, we just use the website of the R package
     (<https://github.com/vcannataro/ECfitbitR>) for our terms.
+    **IMPORTANT:** the fields must exactly match what is in this image.
+    Feel free to copy+paste my inputs:
+
+<!-- end list -->
+
+  - `https://github.com/vcannataro/ECfitbitR`
+  - `http://localhost:1410/` (for Callback URL)
+
+Also make sure to set your `OAuth 2.0 Application Type` as `Personal`.
 
 ![](man/figures/screenshot_app_options.png)
 
@@ -51,8 +60,12 @@ dependencies that need to be installed.
 1.  Open R
 2.  Click File –\> New Document (or whatever the equivalent is in your
     operating system).
-3.  Copy and paste the following into the
-document.
+3.  Copy and paste the following into the document. You may be prompted
+    to select a “mirror” server to download the packages from—choose
+    either the top one or whatever location is closest to you (this
+    mattered more when download speed was highly dependent on distance
+    to
+servers).
 
 <!-- end list -->
 
@@ -74,8 +87,10 @@ install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr",
 <!-- end list -->
 
 5.  On a new line in your document, copy the following and then repeat
-    step
-4
+    step 4. **NOTE:** If on PC, you may be asked to update a certain
+    Rtools package, or to update existing packages. Just hit `Enter` to
+    skip the update at the
+prompt.
 
 <!-- end list -->
 
@@ -121,11 +136,11 @@ the next block of code your internet browser will prompt you to
 authorize your app. Highlight relevant fields and click `Allow`. It will
 look like this:
 
-![auth\_img](man/figures/authorize_screenshot.png)
-
 ``` r
 token <- fitbitr::oauth_token()
 ```
+
+![auth\_img](man/figures/authorize_screenshot.png)
 
 ### Downloading your data from fitbit
 
