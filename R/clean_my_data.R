@@ -116,12 +116,17 @@ clean_my_data <- function(my_fitbit_data){
   #
 
   hr_intraday_summary <- data.frame(Timeframe_6hr_start=unique(hr_intraday_cut$Timeframe_6hr_start),
+                                    Minutes_not_in_zones=NA,
                                     Minutes_in_fat_burn=NA,
                                     Minutes_in_cardio=NA,
                                     Minutes_in_peak=NA)
 
   for(time_block in 1:nrow(hr_intraday_summary)){
 
+
+    hr_intraday_summary[time_block, "Minutes_not_in_zones"] <-
+      length(which(hr_intraday_cut$Timeframe_6hr_start %in% hr_intraday_summary[time_block,"Timeframe_6hr_start"] &
+                     hr_intraday_cut$value < hr_cutoffs[date(hr_cutoffs$date_clean) %in% date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_fatburn"]))
 
     hr_intraday_summary[time_block,"Minutes_in_fat_burn"] <-
       length(which(hr_intraday_cut$Timeframe_6hr_start %in% hr_intraday_summary[time_block,"Timeframe_6hr_start"] &
@@ -143,7 +148,15 @@ clean_my_data <- function(my_fitbit_data){
 
 
 
-    }
+  }
+
+  hr_intraday_summary <- hr_intraday_summary %>%
+    dplyr::rowwise() %>%
+    mutate(total_minutes_recorded = sum(Minutes_not_in_zones,
+                                        Minutes_in_fat_burn,
+                                        Minutes_in_cardio,
+                                        Minutes_in_peak))
+
 
 
 

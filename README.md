@@ -175,5 +175,13 @@ Much of the data in `my_data` is in per-minute resolution. The
 blocks for you for easy analyses.
 
 ``` r
-my_cleaned_data <- ECfitbitR::clean_my_data(my_fitbit_data = my_data)
+my_clean_data <- ECfitbitR::clean_my_data(my_fitbit_data = my_data)
+```
+
+Finally, you can save your data with the `ECfitbitR::save_my_data`
+function. This function defaults to making a `my_fitbit_data` directory
+on your `Desktop`.
+
+``` r
+ECfitbitR::save_my_data(raw_data = my_data, clean_data = my_clean_data)
 ```

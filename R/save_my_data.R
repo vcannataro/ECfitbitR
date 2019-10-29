@@ -36,7 +36,11 @@ save_my_data <- function(raw_data, clean_data, save_directory=NULL){
   write.csv(x = raw_data$my_heartrate_data$heartrate_daily_summary,
             file = file.path(save_directory, "heartrate_summary.csv"),quote = F,row.names = F)
 
+  write.csv(x = clean_data$heartrate_intraday_summary,
+            file = file.path(save_directory, "heartrate_intraday_summary.csv"),quote = F,row.names = F)
 
+  write.csv(x = raw_data$my_sleep_data$sleep_data_output,
+            file = file.path(save_directory, "sleep_summary.csv"),quote = F,row.names = F)
 
 
 }
