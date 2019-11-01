@@ -157,7 +157,11 @@ or pick your own name, so that your file has a name. I am saving
 directly to my Desktop:
 
 ``` r
+# for MAC: 
 save(my_data, file = file.path("~","Desktop","my_fitbit_data.RData")) 
+
+# for PC:
+save(my_data, file = file.path(path.expand("~"),"my_fitbit_data.RData",fsep="\\")) 
 ```
 
 You can also save your data as a .csv to open in other programs, like
@@ -165,7 +169,11 @@ Microsoft Excel.
 
 ``` r
 # saving heartrate data summary
+# For MAC: 
 write.csv(x = my_data$my_heartrate_data$heartrate_daily_summary,file.path("~","Desktop","my_heartrate_data.csv"), row.names = F)
+
+#For PC: 
+write.csv(x = my_data$my_heartrate_data$heartrate_daily_summary,file.path(path.expand("~"),"my_heartrate_data.csv",fsep="\\"), row.names = F)
 ```
 
 ### Clean and save your data for analyses
@@ -183,5 +191,9 @@ function. This function defaults to making a `my_fitbit_data` directory
 on your `Desktop`.
 
 ``` r
-ECfitbitR::save_my_data(raw_data = my_data, clean_data = my_clean_data)
+# For MAC: 
+ECfitbitR::save_my_data(raw_data = my_data, clean_data = my_clean_data,MAC_or_PC = "MAC")
+
+# For PC: 
+ECfitbitR::save_my_data(raw_data = my_data, clean_data = my_clean_data,MAC_or_PC = "PC")
 ```

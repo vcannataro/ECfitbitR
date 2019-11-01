@@ -4,14 +4,17 @@
 \alias{save_my_data}
 \title{Saves your fitbit data}
 \usage{
-save_my_data(raw_data, clean_data, save_directory = NULL)
+save_my_data(raw_data, clean_data, save_directory = NULL,
+  MAC_or_PC = "MAC")
 }
 \arguments{
 \item{raw_data}{the data you created with `ECfitbitR::get_my_data`}
 
+\item{clean_data}{the data from `clean_my_data`}
+
 \item{save_directory}{directory to save fitbit data. Defaults to the desktop}
 
-\item{cleaned_data}{the data you created with `ECfitbitR::clean_my_data`}
+\item{MAC_or_PC}{Has to be either "MAC" or "PC"}
 }
 \description{
 Saves your fitbit data
