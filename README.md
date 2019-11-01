@@ -30,7 +30,8 @@ personal FitBit API web app.
 <!-- end list -->
 
   - `https://github.com/vcannataro/ECfitbitR`
-  - `http://localhost:1410/` (for Callback URL)
+  - `http://localhost:1410/` (for Callback URL. **Note** that this needs
+    to be `http:` and *not* `https:`)
 
 Also make sure to set your `OAuth 2.0 Application Type` as `Personal`.
 
@@ -147,12 +148,17 @@ token <- fitbitr::oauth_token()
 Run the following code to download your data from fitbit:
 
 ``` r
-my_data <- ECfitbitR::get_my_data(token=token)
+# for the month of October, 2019:
+my_data <- ECfitbitR::get_my_data(token=token, start_date = "2019-10-31")
+
+# for the previous month from today's date (remove the `#` to run): 
+# my_data <- ECfitbitR::get_my_data(token=token)
 ```
 
 You can save all of your data to your computer in an R data file
-(.RData). Just change the directory in the quotes in the following code
-block and run the block. Make sure to keep the `my_fitbit_data.RData`,
+(.RData). Either click `File --> Save Workspace` (PC) or `Workspace -->
+Save workspace file...` (MAC) and find a directory to save your data.
+Or, follow the code below. Make sure to keep the `my_fitbit_data.RData`,
 or pick your own name, so that your file has a name. I am saving
 directly to my Desktop:
 

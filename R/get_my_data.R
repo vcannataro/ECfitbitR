@@ -22,15 +22,17 @@ get_my_data <- function(token, start_date=NULL){
 
   message("Collecting activity data...")
 
-  my_activity_data <- ECfitbitR::collect_activity(token=token)
+  my_activity_data <- ECfitbitR::collect_activity(token=token,start_date=start_date)
 
   message("Collecting heart rate data...")
 
-  my_heartrate_data <- ECfitbitR::collect_heartrate(token = token)
+  my_heartrate_data <- ECfitbitR::collect_heartrate(token = token,start_date = start_date)
 
   message("Collecting sleep data...")
 
-  my_sleep_data <- ECfitbitR::collect_sleep(token=token)
+  my_sleep_data <- ECfitbitR::collect_sleep(token=token,start_date = start_date)
+
+  message("All data collected!")
 
   return(list(
     my_activity_data = my_activity_data,

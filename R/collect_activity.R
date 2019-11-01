@@ -19,11 +19,11 @@ collect_activity <- function(token, start_date=NULL,days_prior_to_start=30){
   if(is.null(start_date)){
     this_date <- lubridate::today()-1
   }else{
-    this_date = start_date
+    this_date = as.Date(start_date)
   }
 
   # range of dates according to days_prior
-  dates_to_calc <- seq(to=this_date,from=(this_date-days_prior_to_start),"days")
+  dates_to_calc <- seq(to=as.Date(this_date),from=(as.Date(this_date)-days_prior_to_start),"days")
 
   # initiate data structures
 

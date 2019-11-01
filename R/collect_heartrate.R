@@ -18,7 +18,7 @@ collect_heartrate <- function(token, start_date=NULL, period_to_collect="1m", in
   if(is.null(start_date)){
     this_date <- lubridate::today()-1
   }else{
-    this_date = start_date
+    this_date = as.Date(start_date)
   }
 
   # get data
