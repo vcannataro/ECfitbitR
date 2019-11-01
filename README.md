@@ -159,9 +159,11 @@ directly to my Desktop:
 ``` r
 # for MAC: 
 save(my_data, file = file.path("~","Desktop","my_fitbit_data.RData")) 
+message("MAC users have their data saved to: ",file.path("~","Desktop"))
 
 # for PC:
 save(my_data, file = file.path(path.expand("~"),"my_fitbit_data.RData",fsep="\\")) 
+message("PC users have their data saved to: ",file.path(path.expand("~")))
 ```
 
 You can also save your data as a .csv to open in other programs, like

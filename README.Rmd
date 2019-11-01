@@ -113,9 +113,11 @@ You can save all of your data to your computer in an R data file (.RData). Just 
 ```{r, eval=F}
 # for MAC: 
 save(my_data, file = file.path("~","Desktop","my_fitbit_data.RData")) 
+message("MAC users have their data saved to: ",file.path("~","Desktop"))
 
 # for PC:
 save(my_data, file = file.path(path.expand("~"),"my_fitbit_data.RData",fsep="\\")) 
+message("PC users have their data saved to: ",file.path(path.expand("~")))
 ```
 
 
