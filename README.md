@@ -71,7 +71,8 @@ servers).
 <!-- end list -->
 
 ``` r
-install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","rlang","httr","jsonlite","httpuv","RCurl","devtools","magrittr"))
+install.packages( "https://cran.r-project.org/src/contrib/rlang_0.4.1.tar.gz", repos = NULL, type="source")
+install.packages(c("stringr","lubridate","dplyr","tidyr","purrr","httr","jsonlite","httpuv","RCurl","devtools","magrittr"))
 ```
 
 4.  On the line of the code that you just copied, press `CMD+return` (or
