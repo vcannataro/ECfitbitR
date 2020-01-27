@@ -97,7 +97,11 @@ clean_my_data <- function(my_fitbit_data){
       names(my_fitbit_data$my_heartrate_data$heartrate_intraday_data)[day_ind]
   }
 
-  hr_intraday <- do.call(what = rbind, args = my_fitbit_data$my_heartrate_data$heartrate_intraday_data)
+  # need to find and eliminate dates with missing data
+  # find rows of recordings for every date
+  rows_in_data <- unlist(lapply(X = my_fitbit_data$my_heartrate_data$heartrate_intraday_data, FUN = function(x) nrow(x)))
+
+  hr_intraday <- do.call(what = rbind, args = my_fitbit_data$my_heartrate_data$heartrate_intraday_data[names(rows_in_data)])
 
   # format the date and time
   hr_intraday$date_clean <-
@@ -126,24 +130,24 @@ clean_my_data <- function(my_fitbit_data){
 
     hr_intraday_summary[time_block, "Minutes_not_in_zones"] <-
       length(which(hr_intraday_cut$Timeframe_6hr_start %in% hr_intraday_summary[time_block,"Timeframe_6hr_start"] &
-                     hr_intraday_cut$value < hr_cutoffs[date(hr_cutoffs$date_clean) %in% date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_fatburn"]))
+                     hr_intraday_cut$value < hr_cutoffs[lubridate::date(hr_cutoffs$date_clean) %in% lubridate::date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_fatburn"]))
 
     hr_intraday_summary[time_block,"Minutes_in_fat_burn"] <-
       length(which(hr_intraday_cut$Timeframe_6hr_start %in% hr_intraday_summary[time_block,"Timeframe_6hr_start"] &
-                     hr_intraday_cut$value >= hr_cutoffs[date(hr_cutoffs$date_clean) %in% date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_fatburn"] &
-                     hr_intraday_cut$value < hr_cutoffs[date(hr_cutoffs$date_clean) %in% date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"max_fatburn"]))
+                     hr_intraday_cut$value >= hr_cutoffs[lubridate::date(hr_cutoffs$date_clean) %in% lubridate::date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_fatburn"] &
+                     hr_intraday_cut$value < hr_cutoffs[lubridate::date(hr_cutoffs$date_clean) %in% lubridate::date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"max_fatburn"]))
 
 
 
     hr_intraday_summary[time_block,"Minutes_in_cardio"] <-
       length(which(hr_intraday_cut$Timeframe_6hr_start %in% hr_intraday_summary[time_block,"Timeframe_6hr_start"] &
-                     hr_intraday_cut$value >= hr_cutoffs[date(hr_cutoffs$date_clean) %in% date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_cardio"] &
-                     hr_intraday_cut$value < hr_cutoffs[date(hr_cutoffs$date_clean) %in% date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"max_cardio"]))
+                     hr_intraday_cut$value >= hr_cutoffs[lubridate::date(hr_cutoffs$date_clean) %in% lubridate::date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_cardio"] &
+                     hr_intraday_cut$value < hr_cutoffs[lubridate::date(hr_cutoffs$date_clean) %in% lubridate::date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"max_cardio"]))
 
     hr_intraday_summary[time_block,"Minutes_in_peak"] <-
       length(which(hr_intraday_cut$Timeframe_6hr_start %in% hr_intraday_summary[time_block,"Timeframe_6hr_start"] &
-                     hr_intraday_cut$value >= hr_cutoffs[date(hr_cutoffs$date_clean) %in% date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_peak"] &
-                     hr_intraday_cut$value < hr_cutoffs[date(hr_cutoffs$date_clean) %in% date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"max_peak"]))
+                     hr_intraday_cut$value >= hr_cutoffs[lubridate::date(hr_cutoffs$date_clean) %in% lubridate::date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"min_peak"] &
+                     hr_intraday_cut$value < hr_cutoffs[lubridate::date(hr_cutoffs$date_clean) %in% lubridate::date(hr_intraday_summary[time_block,"Timeframe_6hr_start"]),"max_peak"]))
 
 
 
